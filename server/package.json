@@ -19,6 +19,7 @@
     "@graphile/pro": "^0.7.0",
     "@nuxtjs/apollo": "^4.0.0-rc6",
     "@nuxtjs/pwa": "^2.6.0",
+    "connect-pg-simple": "^6.0.0",
     "connect-redis": "^3.4.1",
     "consola": "^2.6.2",
     "cross-env": "^5.2.0",
