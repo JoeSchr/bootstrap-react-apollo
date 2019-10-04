@@ -7,10 +7,13 @@
         <logo />
       </div>
       <ApolloMutation
-        :mutation="LOGIN"
+        :mutation="REGISTER"
         :variables="{
           username: form.username,
+          email: form.email,
           password: form.password,
+          name: form.name,
+          avatarUrl: form.avatarUrl,
         }
         "
         @done="onDone"
@@ -19,14 +22,14 @@
           <v-form ref="form" v-model="valid" @submit.prevent="submit(mutate)">
             <v-card class="elevation-3">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-toolbar-title>Register</v-toolbar-title>
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
                 <v-text-field
-                  v-model="form.username"
-                  label="Username / E-Mail:"
-                  :rules="usernameRules"
+                  v-model="form.email"
+                  label="Enter your e-mail address"
+                  :rules="emailRules"
                   required
                 />
                 <v-text-field
@@ -34,11 +37,25 @@
                   label="Enter your password"
                   min="8"
                   :append-icon="password_hidden ? 'visibility' : 'visibility_off'"
-                  :append-icon-cb="() => (password_hidden = !password_hidden)"
                   :type="password_hidden ? 'password' : 'text'"
                   :rules="passwordRules"
                   counter
                   required
+                  @click:append="() => (password_hidden = !password_hidden)"
+                />
+                <v-text-field
+                  v-model="form.username"
+                  label="Enter your username (optional, but recommended)"
+                  :rules="usernameRules"
+                />
+                <v-text-field
+                  v-model="form.name"
+                  label="Enter your full name (optional)"
+                />
+                <v-text-field
+                  v-model="form.avatarUrl"
+                  label="Enter your avatar url (optional)"
+                  :rules="avatarUrlRules"
                 />
                 <v-layout justify-space-between />
                 <div v-if="error" class="error">
@@ -46,42 +63,33 @@
                 </div>
               </v-card-text>
               <v-card-actions>
-                <nuxt-link :to="'register'">
-                  Register
-                </nuxt-link>
+                <v-btn
+                  type="reset"
+                  @click="clear"
+                >
+                  Reset
+                </v-btn>
                 <v-spacer />
-                <v-btn
-                  :class="{ 'black lighten-4 white--text': !valid}"
-                  :to="'forgot-password'"
-                >
-                  Forgot Password
-                </v-btn>
-                <v-btn
-                  :class="{ 'green lighten-3 black--text': !valid}"
-                  href="auth/github/"
-                >
-                  Login with GitHub
-                </v-btn>
                 <v-btn
                   :class="{ 'blue darken-4 white--text': valid}"
                   :disabled="!valid"
                   :loading="loading"
                   type="submit"
                 >
-                  Login
+                  Register
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-form>
         </template>
-      </apollomutation>
+      </ApolloMutation>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import REGISTER from "~/graphql/userRegister.gql";
 import CURRENT_USER from "~/graphql/userCurrent.gql";
-import LOGIN from "~/graphql/userLogin.gql";
 import Logo from "~/components/Logo.vue";
 
 export default {
@@ -94,24 +102,39 @@ export default {
   },
 
   data: () => ({
-    LOGIN,
+    REGISTER,
     valid: false,
     password_hidden: true,
     form: {
       username: "",
+      email: "",
       password: "",
+      name: "",
+      avatarUrl: "",
     },
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /^\w+([.-^+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v)
+        || "E-mail must be valid",
+    ],
     passwordRules: [v => !!v || "Password is required"],
-    usernameRules: [v => !!v || "Is required"],
+    usernameRules: [
+      v => (v.length === 0 || v.length >= 2) || "Username must be longer than 2 characters",
+      v => (v.length === 0 || v.length <= 24) || "Username must be shorter than 24 characters",
+      v => (v.length === 0 || /^[a-zA-Z]([a-zA-Z0-9][_]?)+$/.test(v)) || "Username must be valid",
+    ],
+    avatarUrlRules: [
+      v => (v.length === 0 || /(https?):\/\/([0-9A-Za-z\\.\-?@:%_+~#=/]+)+/.test(v)) || "AvatarUrl must start with http[s]://",
+    ],
+
   }),
 
   computed: {},
   methods: {
-
     async onDone(
       {
         data: {
-          login: { user },
+          register: { user },
         },
       },
     ) {
@@ -126,7 +149,7 @@ export default {
         },
       });
 
-      // after login go back to Welcome
+      // after register and login go back to Welcome
       this.$router.push({ path: "/" });
     },
     submit(mutate) {
@@ -134,10 +157,9 @@ export default {
         mutate();
       }
     },
-    /*
     clear() {
       this.$refs.form.reset();
-    }, */
+    },
   },
 };
 </script>
