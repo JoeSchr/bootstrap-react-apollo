@@ -32,7 +32,7 @@ type CreateUserEmailPayload {
   """An edge for our `UserEmail`. May be used by Relay 1."""
   userEmailEdge(
     """The method to use when ordering `UserEmail`."""
-    orderBy: [UserEmailsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UserEmailsOrderBy!] = [PRIMARY_KEY_ASC]
   ): UserEmailsEdge
 }
 
@@ -106,7 +106,7 @@ type DeleteUserAuthenticationPayload {
   """An edge for our `UserAuthentication`. May be used by Relay 1."""
   userAuthenticationEdge(
     """The method to use when ordering `UserAuthentication`."""
-    orderBy: [UserAuthenticationsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UserAuthenticationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): UserAuthenticationsEdge
 }
 
@@ -196,7 +196,7 @@ type DeleteUserEmailPayload {
   """An edge for our `UserEmail`. May be used by Relay 1."""
   userEmailEdge(
     """The method to use when ordering `UserEmail`."""
-    orderBy: [UserEmailsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UserEmailsOrderBy!] = [PRIMARY_KEY_ASC]
   ): UserEmailsEdge
 }
 
@@ -232,7 +232,7 @@ type DeleteUserPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 
@@ -547,7 +547,7 @@ type ResetPasswordPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 
@@ -623,7 +623,7 @@ type UpdateUserPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 
@@ -860,6 +860,6 @@ type VerifyUserEmailPayload {
   """An edge for our `UserEmail`. May be used by Relay 1."""
   userEmailEdge(
     """The method to use when ordering `UserEmail`."""
-    orderBy: [UserEmailsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UserEmailsOrderBy!] = [PRIMARY_KEY_ASC]
   ): UserEmailsEdge
 }

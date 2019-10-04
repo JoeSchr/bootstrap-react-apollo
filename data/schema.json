@@ -1873,7 +1873,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -1998,7 +1998,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -2215,7 +2215,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -2598,7 +2598,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -3071,7 +3071,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -3229,7 +3229,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
@@ -3452,7 +3452,7 @@
                       }
                     }
                   },
-                  "defaultValue": "PRIMARY_KEY_ASC"
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
                 }
               ],
               "type": {
